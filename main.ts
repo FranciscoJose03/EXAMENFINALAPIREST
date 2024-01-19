@@ -19,4 +19,4 @@ app.use(express.json());
 //Endpoints
 app.get("/api", holamundo);
 
-app.listen(3000, () => { console.log("Funcionando en puerto 3000") });
+app.listen(3000, () => { console.log("Ready en puerto 3000") });
