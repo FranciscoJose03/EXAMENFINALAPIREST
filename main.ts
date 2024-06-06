@@ -1,22 +1,13 @@
-import express from "npm:express@4.18.2";
-import mongoose from "mongoose";
+/// <reference no-default-lib="true" />
+/// <reference lib="dom" />
+/// <reference lib="dom.iterable" />
+/// <reference lib="dom.asynciterable" />
+/// <reference lib="deno.ns" />
 
-import { holamundo } from "./resolvers/base.ts";
+import "$std/dotenv/load.ts";
 
-const MONGO_URL = Deno.env.get("MONGO_URL");
+import { start } from "$fresh/server.ts";
+import manifest from "./fresh.gen.ts";
+import config from "./fresh.config.ts";
 
-if (!MONGO_URL) {
-  console.log("No mongo URL found");
-  Deno.exit(1);
-}
-
-await mongoose.connect(MONGO_URL);
-
-
-const app = express(); 
-app.use(express.json());
-
-//Endpoints
-app.get("/api", holamundo);
-
-app.listen(3000, () => { console.log("Ready en puerto 3000") });
+await start(manifest, config);
